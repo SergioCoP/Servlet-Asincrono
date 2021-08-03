@@ -4,7 +4,7 @@ public class BeanCategory {
     private int idCategory;
     private String nameCategory;
     private int status;
-
+//--
 
     public BeanCategory() {
     }

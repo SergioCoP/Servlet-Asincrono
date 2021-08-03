@@ -1,7 +1,7 @@
 package mx.edu.utez.service;
 
 import java.sql.*;
-
+//--
 public class ConnectionMySQL {
     public static Connection getConnection() throws SQLException {
         String host = "127.0.0.1";

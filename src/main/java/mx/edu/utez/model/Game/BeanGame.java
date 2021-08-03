@@ -10,7 +10,7 @@ public class BeanGame {
     private int Category_idCategory;
     private String datePremiere;
     private int Status;
-
+//--
     public BeanGame() {
     }
 

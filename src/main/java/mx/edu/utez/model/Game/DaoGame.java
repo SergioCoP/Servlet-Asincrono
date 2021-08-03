@@ -130,4 +130,5 @@ final private Logger CONSOLE = LoggerFactory.getLogger(DaoGame.class);
         }
         return flag;
     }
+    //--
 }
