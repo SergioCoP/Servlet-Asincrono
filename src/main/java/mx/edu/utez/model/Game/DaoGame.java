@@ -4,11 +4,13 @@ import mx.edu.utez.model.Category.BeanCategory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import mx.edu.utez.service.ConnectionMySQL;
@@ -37,7 +39,8 @@ final private Logger CONSOLE = LoggerFactory.getLogger(DaoGame.class);
                 beanGame.setNameGame(rs.getString("nameGame"));
                 beanGame.setDatePremiere(rs.getString("date_premiere"));
                 beanGame.setStatus(rs.getInt("status"));
-                beanGame.setCategory_idCategory(rs.getInt("idCategory"));
+                beanGame.setImgGame(Base64.getEncoder().encodeToString(rs.getBytes("img_game")));
+                //beanGame.setCategory_idCategory(rs.getInt("idCategory"));
 
 
                 listGames.add(beanGame);
@@ -67,7 +70,7 @@ final private Logger CONSOLE = LoggerFactory.getLogger(DaoGame.class);
                 beanGame.setNameGame(rs.getString("nameGame"));
                 beanGame.setDatePremiere(rs.getString("date_premiere"));
                 beanGame.setStatus(rs.getInt("status"));
-                beanGame.setCategory_idCategory(rs.getInt("idCategory"));
+                //beanGame.setCategory_idCategory(rs.getInt("idCategory"));
             }
         }catch (SQLException e){
             CONSOLE.error("Ha ocurrido un error: " + e.getMessage());
@@ -78,14 +81,15 @@ final private Logger CONSOLE = LoggerFactory.getLogger(DaoGame.class);
     }
 
 
-    public boolean create(BeanGame game){
+    public boolean create(BeanGame game, InputStream image){
         boolean flag = false;
         try{
             con = ConnectionMySQL.getConnection();
             cstm = con.prepareCall("{call registerGame(?,?,?,?)}");
           cstm.setString(1,game.getNameGame());
           cstm.setString(2, game.getDatePremiere());
-          cstm.setInt(3,game.getCategory_idCategory());
+          cstm.setInt(3, game.getCategory_idCategory().getIdCategory());
+          cstm.setBlob(4, image);
             cstm.execute();
             flag = true;
         }catch(SQLException e){
@@ -104,7 +108,7 @@ final private Logger CONSOLE = LoggerFactory.getLogger(DaoGame.class);
             cstm.setInt(1,game.getIdGame());
             cstm.setString(2,game.getNameGame());
             cstm.setString(3, game.getDatePremiere());
-            cstm.setInt(4,game.getCategory_idCategory());
+            cstm.setInt(4,game.getCategory_idCategory().getIdCategory());
 
             flag = cstm.execute();
         }catch(SQLException e){

@@ -1,5 +1,7 @@
 package mx.edu.utez.model.Game;
 
+import mx.edu.utez.model.Category.BeanCategory;
+
 import java.io.File;
 
 public class BeanGame {
@@ -7,14 +9,14 @@ public class BeanGame {
     private int idGame;
     private String nameGame;
     private String imgGame;//Para guardar las imagenes
-    private int Category_idCategory;
+    private BeanCategory Category_idCategory;
     private String datePremiere;
     private int Status;
 //--
     public BeanGame() {
     }
 
-    public BeanGame(int idGame, String nameGame, String imgGame, int category_idCategory, String datePremiere, int status) {
+    public BeanGame(int idGame, String nameGame, String imgGame, BeanCategory category_idCategory, String datePremiere, int status) {
         this.idGame = idGame;
         this.nameGame = nameGame;
         this.imgGame = imgGame;
@@ -47,11 +49,11 @@ public class BeanGame {
         this.imgGame = imgGame;
     }
 
-    public int getCategory_idCategory() {
+    public BeanCategory getCategory_idCategory() {
         return Category_idCategory;
     }
 
-    public void setCategory_idCategory(int category_idCategory) {
+    public void setCategory_idCategory(BeanCategory category_idCategory) {
         Category_idCategory = category_idCategory;
     }
 
