@@ -38,7 +38,13 @@
                 <td>${ game.nameGame }</td>
                 <td>${ game.Category_idCategory.nameCategory }</td>
                 <td>${ game.datePremiere }</td>
-                <td>${ game.Status }</td>
+                <td><c:if test="${ game.Status == 1 }">
+                    <span class="badge rounded-pill bg-success">Activo</span>
+                </c:if>
+                    <c:if test="${ game.Status == 0 }">
+                        <span class="badge rounded-pill bg-danger">Inactivo</span>
+                    </c:if>
+                </td>
                 <td>
                     <a  class="btn btn-primary btn-sm btn-modificar"><i class="fas fa-edit"></i></a>
                     <a  class="btn btn-danger btn-sm btn-eliminar"><i class="fas fa-trash-alt"></i></a>
