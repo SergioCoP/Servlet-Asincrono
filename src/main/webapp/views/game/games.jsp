@@ -11,14 +11,16 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="${context}/assets/dist/css/dialogos.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 <body>
 
 <div class="d-flex">
     <div class="col-sm-12">
         <button type="button" class="btn btn-success" id="btn-registar"><i class="fas fa-plus"></i>Agregar</button>
-        <table class="table" id="table" >
+        <table class="table" id="container" >
             <thead class="table-light" >
             <tr>
                 <th>No.</th><!--Enbcabezado-->
@@ -31,32 +33,55 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${ listGames }" var="game" varStatus="status"><!--iterar cada usuario-->
-            <tr>
-                <td>${ status.count } </td>
-                <td><img src="data:image/jpeg;base64,${ game.imgGame }" alt="ss"></td><!--datos del bean person-->
-                <td>${ game.nameGame }</td>
-                <td>${ game.Category_idCategory.nameCategory }</td>
-                <td>${ game.datePremiere }</td>
-                <td><c:if test="${ game.Status == 1 }">
-                    <span class="badge rounded-pill bg-success">Activo</span>
-                </c:if>
-                    <c:if test="${ game.Status == 0 }">
-                        <span class="badge rounded-pill bg-danger">Inactivo</span>
-                    </c:if>
-                </td>
-                <td>
-                    <a  class="btn btn-primary btn-sm btn-modificar"><i class="fas fa-edit"></i></a>
-                    <a  class="btn btn-danger btn-sm btn-eliminar"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
-            </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
 
+<dialog id="Registrar" class="col-sm-5 dialogo">
+    <div class="d-flex">
+        <div class="card col-sm-12 border-0">
+            <div class="card-header align-content-end">
+                <button class="btn btn-light" id="cerrar" type="reset"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="card-body">
+                <form  class="row g-3" id="fregistrar">
+                    <%--<input type="hidden" name="action" value="create">--%>
+                    <div class="form-group col-md-6">
+                        <label>Nombre(s)</label>
+                        <input type="text" class="form-control campo" name="txtname" onkeyup="" pattern="^[a-zA-ZáéíóúÁÉÍÓÚÑñüÜ ]+" title="Sólo letras" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Imagen</label>
+                        <input type="file" class="form-control campo" name="txtimage" onkeyup="" pattern="^[a-zA-ZáéíóúÁÉÍÓÚÑñüÜ ]+" title="Sólo letras"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Fecha Estreno </label>
+                        <input type="text" class="form-control" name="txtdate" onkeyup="" />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Categoria </label>
+                        <div class="row">
+                            <div class="">
+                                <select class="form-select" name="txtidCategory" onchange="" >
+                                    <option value="1">Accion</option>
+                                    <option value="2">RPG</option>
+                                    <option value="3">Plataforma</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <menu>
+                        <br>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i>Registrar</button>
+                    </menu>
+                </form>
+            </div>
+        </div>
+    </div>
+</dialog>
 
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src="${context}/assets/dist/js/funtions.js"></script>

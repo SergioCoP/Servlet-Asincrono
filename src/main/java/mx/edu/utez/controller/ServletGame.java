@@ -46,13 +46,13 @@ public class ServletGame extends HttpServlet {
         BeanGame beanGame = new BeanGame();
     switch(action){
         case "create":
-            Part part = request.getPart("image");//obtener la imagen o documento
+            Part part = request.getPart("txtimage");//obtener la imagen o documento
             InputStream image = part.getInputStream();//se convierte a input string
 
-           beanCategory.setIdCategory(Integer.parseInt(request.getParameter("idCategory")));
+           beanCategory.setIdCategory(Integer.parseInt(request.getParameter("txtidCategory")));
 
-           beanGame.setNameGame(request.getParameter("name"));
-           beanGame.setDatePremiere(request.getParameter("date"));
+           beanGame.setNameGame(request.getParameter("txtname"));
+           beanGame.setDatePremiere(request.getParameter("txtdate"));
            beanGame.setCategory_idCategory(beanCategory);
 
             boolean flag = daoGame.create(beanGame,image);
